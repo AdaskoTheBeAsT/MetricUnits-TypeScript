@@ -23,5 +23,10 @@
       }
     }
   },
-  "defaultProject": "metric-units"
+  "defaultProject": "metric-units",
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": true
+    }
+  }
 }
