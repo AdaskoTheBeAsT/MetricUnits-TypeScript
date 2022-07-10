@@ -1,0 +1,98 @@
+{
+  "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+  "sourceRoot": "packages/metric-units/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/metric-units",
+        "main": "packages/metric-units/src/index.ts",
+        "tsConfig": "packages/metric-units/tsconfig.lib.json",
+        "assets": ["packages/metric-units/*.md"]
+      }
+    },
+    "publish": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs metric-units {args.ver} {args.tag}"
+      },
+      "dependsOn": [
+        {
+          "projects": "self",
+          "target": "build"
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/metric-units/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/metric-units"],
+      "options": {
+        "jestConfig": "packages/metric-units/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "copy-license-readme": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "shx cp ./README.md ./packages/metric-units/src/README.md && shx cp ./LICENSE ./packages/metric-units/src/LICENSE"
+      }
+    },
+    "package": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": [
+        {
+          "projects": "self",
+          "target": "copy-license-readme"
+        }
+      ],
+      "options": {
+        "project": "packages/metric-units/package.json",
+        "outputPath": "dist/packages/metric-units",
+        "entryFile": "packages/metric-units/src/index.ts",
+        "tsConfig": "packages/metric-units/tsconfig.lib.json",
+        "compiler": "babel",
+        "umdName": "OtherName",
+        "external": ["typescript", "core-js"],
+        "format": ["cjs", "esm"]
+      }
+    },
+    "bundle": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": [
+        {
+          "target": "package",
+          "projects": "self"
+        }
+      ],
+      "options": {
+        "libraryName": "metric-units",
+        "libraryTargets": ["global", "commonjs", "amd", "umd"],
+        "index": "",
+        "tsConfig": "packages/metric-units/tsconfig.lib.json",
+        "main": "packages/metric-units/src/index.ts",
+        "outputPath": "dist/packages/metric-units/bundles",
+        "compiler": "babel",
+        "optimization": true,
+        "extractLicenses": true,
+        "runtimeChunk": false,
+        "vendorChunk": false,
+        "generateIndexHtml": false,
+        "commonChunk": false,
+        "namedChunks": false,
+        "webpackConfig": "webpack.config.js"
+      }
+    }
+  },
+  "tags": []
+}

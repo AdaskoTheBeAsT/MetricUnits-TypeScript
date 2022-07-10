@@ -1,0 +1,13 @@
+{
+  "presets": [
+    [
+      "@nrwl/web/babel",
+      {
+        "useBuiltIns": "usage",
+        "corejs": {
+          "version": 3
+        }
+      }
+    ]
+  ]
+}
