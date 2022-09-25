@@ -16,7 +16,7 @@
  */
 
 export function enumKeysAsString<TEnum>(theEnum: TEnum): (keyof TEnum)[] {
-  const keys = Object.keys(theEnum).filter(
+  const keys = Object.keys(theEnum as object).filter(
     (x) => +x + '' !== x && typeof theEnum[x as keyof TEnum] !== 'function'
   ) as (keyof TEnum)[];
   return keys;
