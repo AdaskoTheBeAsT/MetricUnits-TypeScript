@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@adaskothebeast/metric-units": ["packages/metric-units/src/index.ts"]
+      "@adaskothebeast/metric-units": ["libs/metric-units/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
