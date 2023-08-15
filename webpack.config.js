@@ -58,7 +58,7 @@ const modifyEntries = (config, libraryName, libraryTarget) => {
     };
   });
 
-  // @nrwl/web:webpack runs webpack 2 times with es5 and esm configurations
+  // @nx/web:webpack runs webpack 2 times with es5 and esm configurations
   const outputFilename = config.output.filename.includes('es5')
     ? config.output.filename
     : '[name].js';
