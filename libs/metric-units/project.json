@@ -10,6 +10,20 @@
       "options": {
         "outputPath": "dist/libs/metric-units",
         "main": "libs/metric-units/src/index.ts",
+        "additionalEntryPoints": [
+          "libs/metric-units/src/air-pressure.ts",
+          "libs/metric-units/src/constants.ts",
+          "libs/metric-units/src/enthalpy.ts",
+          "libs/metric-units/src/EnthalpyUnit.ts",
+          "libs/metric-units/src/enumUtils.ts",
+          "libs/metric-units/src/height.ts",
+          "libs/metric-units/src/HeightUnit.ts",
+          "libs/metric-units/src/PressureUnit.ts",
+          "libs/metric-units/src/specific-humidity.ts",
+          "libs/metric-units/src/SpecificHumidityUnit.ts",
+          "libs/metric-units/src/temperature.ts",
+          "libs/metric-units/src/TemperatureUnit.ts"
+        ],
         "tsConfig": "libs/metric-units/tsconfig.lib.json",
         "assets": ["libs/metric-units/*.md"]
       }

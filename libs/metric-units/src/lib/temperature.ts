@@ -14,33 +14,9 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import TemperatureUnit from './temperature-unit';
 
-export enum TemperatureUnit {
-  Celsius,
-  Fahrenheit,
-  Kelvin,
-}
-
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace TemperatureUnit {
-  export function getLabel(value: TemperatureUnit): string {
-    switch (value) {
-      case TemperatureUnit.Celsius:
-        return '°C';
-      case TemperatureUnit.Fahrenheit:
-        return '°F';
-      case TemperatureUnit.Kelvin:
-        return '°K';
-      default:
-        throw new Error(`${value} of type TemperatureUnit has no label`);
-    }
-  }
-}
-
-export function temperatureToUnit(
-  unit: TemperatureUnit,
-  value: number
-): number {
+export function temperatureToUnit(unit: TemperatureUnit, value: number): number {
   switch (unit) {
     case TemperatureUnit.Celsius:
       return value;
@@ -53,10 +29,7 @@ export function temperatureToUnit(
   }
 }
 
-export function temperatureFromUnit(
-  unit: TemperatureUnit,
-  value: number
-): number {
+export function temperatureFromUnit(unit: TemperatureUnit, value: number): number {
   switch (unit) {
     case TemperatureUnit.Celsius:
       return value;

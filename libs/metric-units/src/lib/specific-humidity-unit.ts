@@ -15,27 +15,26 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { METERS_PER_FOOT } from './constants';
-import HeightUnit from './height-unit';
+export enum SpecificHumidityUnit {
+  GramsPerKilogram,
+  KilogramsPerKilogram,
+  PoundsPerPound,
+}
 
-export function heightToUnit(unit: HeightUnit, value: number): number {
-  switch (unit) {
-    case HeightUnit.Meters:
-      return value;
-    case HeightUnit.Feet:
-      return value / METERS_PER_FOOT;
-    default:
-      throw Error(`Unknown height unit ${unit}`);
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace SpecificHumidityUnit {
+  export function getLabel(value: SpecificHumidityUnit): string {
+    switch (value) {
+      case SpecificHumidityUnit.GramsPerKilogram:
+        return 'g/kg';
+      case SpecificHumidityUnit.KilogramsPerKilogram:
+        return 'kg/kg';
+      case SpecificHumidityUnit.PoundsPerPound:
+        return 'lb/lb';
+      default:
+        throw new Error(`${value} of type SpecificHumidityUnit has no label`);
+    }
   }
 }
 
-export function heightFromUnit(unit: HeightUnit, value: number): number {
-  switch (unit) {
-    case HeightUnit.Meters:
-      return value;
-    case HeightUnit.Feet:
-      return value * METERS_PER_FOOT;
-    default:
-      throw Error(`Unknown height unit ${unit}`);
-  }
-}
+export default SpecificHumidityUnit;

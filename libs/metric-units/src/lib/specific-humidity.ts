@@ -15,32 +15,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export enum SpecificHumidityUnit {
-  GramsPerKilogram,
-  KilogramsPerKilogram,
-  PoundsPerPound,
-}
+import SpecificHumidityUnit from './specific-humidity-unit';
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace SpecificHumidityUnit {
-  export function getLabel(value: SpecificHumidityUnit): string {
-    switch (value) {
-      case SpecificHumidityUnit.GramsPerKilogram:
-        return 'g/kg';
-      case SpecificHumidityUnit.KilogramsPerKilogram:
-        return 'kg/kg';
-      case SpecificHumidityUnit.PoundsPerPound:
-        return 'lb/lb';
-      default:
-        throw new Error(`${value} of type SpecificHumidityUnit has no label`);
-    }
-  }
-}
-
-export function specificHumidityToUnit(
-  unit: SpecificHumidityUnit,
-  value: number
-): number {
+export function specificHumidityToUnit(unit: SpecificHumidityUnit, value: number): number {
   switch (unit) {
     case SpecificHumidityUnit.GramsPerKilogram:
       return value;
@@ -53,10 +30,7 @@ export function specificHumidityToUnit(
   }
 }
 
-export function specificHumidityFromUnit(
-  unit: SpecificHumidityUnit,
-  value: number
-): number {
+export function specificHumidityFromUnit(unit: SpecificHumidityUnit, value: number): number {
   switch (unit) {
     case SpecificHumidityUnit.GramsPerKilogram:
       return value;

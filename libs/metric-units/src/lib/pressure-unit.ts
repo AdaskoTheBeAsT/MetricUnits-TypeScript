@@ -57,3 +57,5 @@ export namespace PressureUnit {
     }
   }
 }
+
+export default PressureUnit;

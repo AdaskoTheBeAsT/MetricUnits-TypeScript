@@ -1,6 +1,6 @@
 {
   "name": "adaskothebeast",
-  "version": "2.1.0",
+  "version": "2.1.4",
   "license": "AGPL-3.0",
   "description": "Metric units for TypeScript",
   "author": "Adam Pluciński <adaskothebeast@gmail.com>",
@@ -17,6 +17,7 @@
   "bugs": {
     "url": "https://github.com/AdaskoTheBeAsT/MetricUnits-TypeScript/issues"
   },
+  "sideEffects": false,
   "scripts": {
     "build": "nx run metric-units:build",
     "lint": "nx run metric-units:lint",

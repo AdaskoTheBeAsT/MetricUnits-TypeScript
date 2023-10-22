@@ -15,27 +15,26 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { METERS_PER_FOOT } from './constants';
-import HeightUnit from './height-unit';
+export enum TemperatureUnit {
+  Celsius,
+  Fahrenheit,
+  Kelvin,
+}
 
-export function heightToUnit(unit: HeightUnit, value: number): number {
-  switch (unit) {
-    case HeightUnit.Meters:
-      return value;
-    case HeightUnit.Feet:
-      return value / METERS_PER_FOOT;
-    default:
-      throw Error(`Unknown height unit ${unit}`);
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace TemperatureUnit {
+  export function getLabel(value: TemperatureUnit): string {
+    switch (value) {
+      case TemperatureUnit.Celsius:
+        return '°C';
+      case TemperatureUnit.Fahrenheit:
+        return '°F';
+      case TemperatureUnit.Kelvin:
+        return '°K';
+      default:
+        throw new Error(`${value} of type TemperatureUnit has no label`);
+    }
   }
 }
 
-export function heightFromUnit(unit: HeightUnit, value: number): number {
-  switch (unit) {
-    case HeightUnit.Meters:
-      return value;
-    case HeightUnit.Feet:
-      return value * METERS_PER_FOOT;
-    default:
-      throw Error(`Unknown height unit ${unit}`);
-  }
-}
+export default TemperatureUnit;
