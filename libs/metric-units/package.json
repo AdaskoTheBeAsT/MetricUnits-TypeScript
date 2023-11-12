@@ -1,6 +1,6 @@
 {
   "name": "@adaskothebeast/metric-units",
-  "version": "2.1.4",
+  "version": "3.0.0",
   "license": "AGPL-3.0",
   "description": "Metric units for TypeScript",
   "author": "Adam Pluciński <adaskothebeast@gmail.com>",
