@@ -5,8 +5,7 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/rollup:rollup",
       "options": {
         "outputPath": "dist/libs/metric-units",
         "main": "libs/metric-units/src/index.ts",
@@ -25,7 +24,10 @@
           "libs/metric-units/src/TemperatureUnit.ts"
         ],
         "tsConfig": "libs/metric-units/tsconfig.lib.json",
-        "assets": ["libs/metric-units/*.md"]
+        "assets": [],
+        "format": ["esm", "cjs"],
+        "generateExportsField": true,
+        "compiler": "babel"
       }
     },
     "publish": {
@@ -34,13 +36,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/metric-units/**/*.ts",
-          "libs/metric-units/package.json"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
