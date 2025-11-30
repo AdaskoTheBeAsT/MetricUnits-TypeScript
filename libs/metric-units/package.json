@@ -1,6 +1,6 @@
 {
   "name": "@adaskothebeast/metric-units",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "license": "AGPL-3.0-or-later",
   "description": "Metric units for TypeScript",
   "author": "Adam Pluciński <adaskothebeast@gmail.com>",
@@ -18,6 +18,5 @@
     "url": "https://github.com/AdaskoTheBeAsT/MetricUnits-TypeScript/issues"
   },
   "sideEffects": false,
-  "dependencies": {
-  }
+  "dependencies": {}
 }
