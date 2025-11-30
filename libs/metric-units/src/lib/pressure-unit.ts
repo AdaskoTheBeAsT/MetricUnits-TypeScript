@@ -28,34 +28,29 @@ export enum PressureUnit {
   ftHg,
 }
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace PressureUnit {
-  export function getLabel(value: PressureUnit): string {
-    switch (value) {
-      case PressureUnit.Pascal:
-        return 'Pa';
-      case PressureUnit.KiloPascal:
-        return 'kPa';
-      case PressureUnit.mmH2O:
-        return 'mmH₂O';
-      case PressureUnit.inH2O:
-        return 'inH₂O';
-      case PressureUnit.mmHg:
-        return 'mmHg';
-      case PressureUnit.inHg:
-        return 'inHg';
-      case PressureUnit.Bar:
-        return 'bar';
-      case PressureUnit.Psia:
-        return 'PSIA';
-      case PressureUnit.ftH2O:
-        return 'ftH₂O';
-      case PressureUnit.ftHg:
-        return 'ftHg';
-      default:
-        throw new Error(`${value} of type PressureUnit has no label`);
-    }
-  }
-}
+const pressureUnitLabels: Record<PressureUnit, string> = {
+  [PressureUnit.Pascal]: 'Pa',
+  [PressureUnit.KiloPascal]: 'kPa',
+  [PressureUnit.mmH2O]: 'mmH₂O',
+  [PressureUnit.inH2O]: 'inH₂O',
+  [PressureUnit.mmHg]: 'mmHg',
+  [PressureUnit.inHg]: 'inHg',
+  [PressureUnit.Bar]: 'bar',
+  [PressureUnit.Psia]: 'PSIA',
+  [PressureUnit.ftH2O]: 'ftH₂O',
+  [PressureUnit.ftHg]: 'ftHg',
+};
 
-export default PressureUnit;
+/**
+ * Gets the display label for a pressure unit.
+ * @param unit - The pressure unit
+ * @returns The unit label (e.g., 'Pa', 'kPa', 'bar')
+ * @throws Error if the unit is unknown
+ */
+export function getPressureUnitLabel(unit: PressureUnit): string {
+  const label = pressureUnitLabels[unit];
+  if (label === undefined) {
+    throw new Error(`${unit} of type PressureUnit has no label`);
+  }
+  return label;
+}

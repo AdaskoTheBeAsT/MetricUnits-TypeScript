@@ -21,20 +21,22 @@ export enum SpecificHumidityUnit {
   PoundsPerPound,
 }
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace SpecificHumidityUnit {
-  export function getLabel(value: SpecificHumidityUnit): string {
-    switch (value) {
-      case SpecificHumidityUnit.GramsPerKilogram:
-        return 'g/kg';
-      case SpecificHumidityUnit.KilogramsPerKilogram:
-        return 'kg/kg';
-      case SpecificHumidityUnit.PoundsPerPound:
-        return 'lb/lb';
-      default:
-        throw new Error(`${value} of type SpecificHumidityUnit has no label`);
-    }
-  }
-}
+const specificHumidityUnitLabels: Record<SpecificHumidityUnit, string> = {
+  [SpecificHumidityUnit.GramsPerKilogram]: 'g/kg',
+  [SpecificHumidityUnit.KilogramsPerKilogram]: 'kg/kg',
+  [SpecificHumidityUnit.PoundsPerPound]: 'lb/lb',
+};
 
-export default SpecificHumidityUnit;
+/**
+ * Gets the display label for a specific humidity unit.
+ * @param unit - The specific humidity unit
+ * @returns The unit label (e.g., 'g/kg', 'kg/kg', 'lb/lb')
+ * @throws Error if the unit is unknown
+ */
+export function getSpecificHumidityUnitLabel(unit: SpecificHumidityUnit): string {
+  const label = specificHumidityUnitLabels[unit];
+  if (label === undefined) {
+    throw new Error(`${unit} of type SpecificHumidityUnit has no label`);
+  }
+  return label;
+}

@@ -15,27 +15,56 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { KILOGRAM_PER_POUND, SECONDS_PER_HOUR } from './constants';
-import EnthalpyUnit from './enthalpy-unit';
+import { BTU_PER_WATT_HOUR, KILOGRAM_PER_POUND, SECONDS_PER_HOUR } from './constants';
+import { EnthalpyUnit } from './enthalpy-unit';
+import { validateFiniteNumber } from './validation';
 
+/**
+ * Converts an enthalpy value from kJ/kg (base unit) to the specified unit.
+ *
+ * @param unit - The target enthalpy unit to convert to
+ * @param value - The enthalpy value in kilojoules per kilogram (kJ/kg)
+ * @returns The enthalpy value converted to the specified unit
+ * @throws Error if the unit is not recognized
+ * @throws TypeError if the value is not a finite number
+ *
+ * @example
+ * // Convert 100 kJ/kg to BTU/lb
+ * enthalpyToUnit(EnthalpyUnit.BritishThermalUnitPerPound, 100);
+ */
 export function enthalpyToUnit(unit: EnthalpyUnit, value: number): number {
+  validateFiniteNumber(value, 'enthalpy');
   switch (unit) {
     case EnthalpyUnit.KiloJoulesPerKilogram:
       return value;
     case EnthalpyUnit.BritishThermalUnitPerPound:
-      return (value / 3.412 / KILOGRAM_PER_POUND) * SECONDS_PER_HOUR;
+      return (value / BTU_PER_WATT_HOUR / KILOGRAM_PER_POUND) * SECONDS_PER_HOUR;
     default:
-      throw Error(`Unknown enthalpy unit ${unit}`);
+      throw new Error(`Unknown enthalpy unit ${unit}`);
   }
 }
 
+/**
+ * Converts an enthalpy value from the specified unit to kJ/kg (base unit).
+ *
+ * @param unit - The source enthalpy unit to convert from
+ * @param value - The enthalpy value in the specified unit
+ * @returns The enthalpy value converted to kilojoules per kilogram (kJ/kg)
+ * @throws Error if the unit is not recognized
+ * @throws TypeError if the value is not a finite number
+ *
+ * @example
+ * // Convert 100 BTU/lb to kJ/kg
+ * enthalpyFromUnit(EnthalpyUnit.BritishThermalUnitPerPound, 100);
+ */
 export function enthalpyFromUnit(unit: EnthalpyUnit, value: number): number {
+  validateFiniteNumber(value, 'enthalpy');
   switch (unit) {
     case EnthalpyUnit.KiloJoulesPerKilogram:
       return value;
     case EnthalpyUnit.BritishThermalUnitPerPound:
-      return (value * 3.412 * KILOGRAM_PER_POUND) / SECONDS_PER_HOUR;
+      return (value * BTU_PER_WATT_HOUR * KILOGRAM_PER_POUND) / SECONDS_PER_HOUR;
     default:
-      throw Error(`Unknown enthalpy unit ${unit}`);
+      throw new Error(`Unknown enthalpy unit ${unit}`);
   }
 }

@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/metric-units/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/rollup:rollup",
@@ -13,15 +14,22 @@
           "libs/metric-units/src/air-pressure.ts",
           "libs/metric-units/src/constants.ts",
           "libs/metric-units/src/enthalpy.ts",
-          "libs/metric-units/src/EnthalpyUnit.ts",
-          "libs/metric-units/src/enumUtils.ts",
+          "libs/metric-units/src/enthalpy-unit.ts",
+          "libs/metric-units/src/enum-utils.ts",
+          "libs/metric-units/src/flow-rate.ts",
+          "libs/metric-units/src/flow-rate-unit.ts",
           "libs/metric-units/src/height.ts",
-          "libs/metric-units/src/HeightUnit.ts",
-          "libs/metric-units/src/PressureUnit.ts",
+          "libs/metric-units/src/height-unit.ts",
+          "libs/metric-units/src/power.ts",
+          "libs/metric-units/src/power-unit.ts",
+          "libs/metric-units/src/pressure-unit.ts",
           "libs/metric-units/src/specific-humidity.ts",
-          "libs/metric-units/src/SpecificHumidityUnit.ts",
+          "libs/metric-units/src/specific-humidity-unit.ts",
           "libs/metric-units/src/temperature.ts",
-          "libs/metric-units/src/TemperatureUnit.ts"
+          "libs/metric-units/src/temperature-unit.ts",
+          "libs/metric-units/src/validation.ts",
+          "libs/metric-units/src/velocity.ts",
+          "libs/metric-units/src/velocity-unit.ts"
         ],
         "tsConfig": "libs/metric-units/tsconfig.lib.json",
         "assets": [],
@@ -45,6 +53,5 @@
         "jestConfig": "libs/metric-units/jest.config.ts"
       }
     }
-  },
-  "tags": []
+  }
 }

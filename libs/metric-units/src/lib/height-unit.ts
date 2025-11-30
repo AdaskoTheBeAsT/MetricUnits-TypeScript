@@ -20,18 +20,21 @@ export enum HeightUnit {
   Feet,
 }
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace HeightUnit {
-  export function getLabel(value: HeightUnit): string {
-    switch (value) {
-      case HeightUnit.Meters:
-        return 'm';
-      case HeightUnit.Feet:
-        return 'ft';
-      default:
-        throw new Error(`${value} of type HeightUnit has no label`);
-    }
-  }
-}
+const heightUnitLabels: Record<HeightUnit, string> = {
+  [HeightUnit.Meters]: 'm',
+  [HeightUnit.Feet]: 'ft',
+};
 
-export default HeightUnit;
+/**
+ * Gets the display label for a height unit.
+ * @param unit - The height unit
+ * @returns The unit label (e.g., 'm', 'ft')
+ * @throws Error if the unit is unknown
+ */
+export function getHeightUnitLabel(unit: HeightUnit): string {
+  const label = heightUnitLabels[unit];
+  if (label === undefined) {
+    throw new Error(`${unit} of type HeightUnit has no label`);
+  }
+  return label;
+}

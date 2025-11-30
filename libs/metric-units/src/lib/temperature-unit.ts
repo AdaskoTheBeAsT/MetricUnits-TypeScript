@@ -21,20 +21,22 @@ export enum TemperatureUnit {
   Kelvin,
 }
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace TemperatureUnit {
-  export function getLabel(value: TemperatureUnit): string {
-    switch (value) {
-      case TemperatureUnit.Celsius:
-        return '°C';
-      case TemperatureUnit.Fahrenheit:
-        return '°F';
-      case TemperatureUnit.Kelvin:
-        return '°K';
-      default:
-        throw new Error(`${value} of type TemperatureUnit has no label`);
-    }
-  }
-}
+const temperatureUnitLabels: Record<TemperatureUnit, string> = {
+  [TemperatureUnit.Celsius]: '°C',
+  [TemperatureUnit.Fahrenheit]: '°F',
+  [TemperatureUnit.Kelvin]: 'K',
+};
 
-export default TemperatureUnit;
+/**
+ * Gets the display label for a temperature unit.
+ * @param unit - The temperature unit
+ * @returns The unit label (e.g., '°C', '°F', 'K')
+ * @throws Error if the unit is unknown
+ */
+export function getTemperatureUnitLabel(unit: TemperatureUnit): string {
+  const label = temperatureUnitLabels[unit];
+  if (label === undefined) {
+    throw new Error(`${unit} of type TemperatureUnit has no label`);
+  }
+  return label;
+}

@@ -16,26 +16,55 @@
  */
 
 import { METERS_PER_FOOT } from './constants';
-import HeightUnit from './height-unit';
+import { HeightUnit } from './height-unit';
+import { validateFiniteNumber } from './validation';
 
+/**
+ * Converts a height/length value from meters (base unit) to the specified unit.
+ *
+ * @param unit - The target height unit to convert to
+ * @param value - The height value in meters
+ * @returns The height value converted to the specified unit
+ * @throws Error if the unit is not recognized
+ * @throws TypeError if the value is not a finite number
+ *
+ * @example
+ * // Convert 1 meter to feet
+ * heightToUnit(HeightUnit.Feet, 1); // Returns ~3.28084
+ */
 export function heightToUnit(unit: HeightUnit, value: number): number {
+  validateFiniteNumber(value, 'height');
   switch (unit) {
     case HeightUnit.Meters:
       return value;
     case HeightUnit.Feet:
       return value / METERS_PER_FOOT;
     default:
-      throw Error(`Unknown height unit ${unit}`);
+      throw new Error(`Unknown height unit ${unit}`);
   }
 }
 
+/**
+ * Converts a height/length value from the specified unit to meters (base unit).
+ *
+ * @param unit - The source height unit to convert from
+ * @param value - The height value in the specified unit
+ * @returns The height value converted to meters
+ * @throws Error if the unit is not recognized
+ * @throws TypeError if the value is not a finite number
+ *
+ * @example
+ * // Convert 1 foot to meters
+ * heightFromUnit(HeightUnit.Feet, 1); // Returns ~0.3048
+ */
 export function heightFromUnit(unit: HeightUnit, value: number): number {
+  validateFiniteNumber(value, 'height');
   switch (unit) {
     case HeightUnit.Meters:
       return value;
     case HeightUnit.Feet:
       return value * METERS_PER_FOOT;
     default:
-      throw Error(`Unknown height unit ${unit}`);
+      throw new Error(`Unknown height unit ${unit}`);
   }
 }

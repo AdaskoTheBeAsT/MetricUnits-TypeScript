@@ -1,20 +1,40 @@
+/**
+ * Copyright (C) 2022 Adam Pluciński
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as published
+ *  by the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 export enum EnthalpyUnit {
   KiloJoulesPerKilogram,
   BritishThermalUnitPerPound,
 }
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
-export namespace EnthalpyUnit {
-  export function getLabel(value: EnthalpyUnit): string {
-    switch (value) {
-      case EnthalpyUnit.KiloJoulesPerKilogram:
-        return 'kJ/kg';
-      case EnthalpyUnit.BritishThermalUnitPerPound:
-        return 'Btu/lb';
-      default:
-        throw new Error(`${value} of type EnthalpyUnit has no label`);
-    }
-  }
-}
+const enthalpyUnitLabels: Record<EnthalpyUnit, string> = {
+  [EnthalpyUnit.KiloJoulesPerKilogram]: 'kJ/kg',
+  [EnthalpyUnit.BritishThermalUnitPerPound]: 'Btu/lb',
+};
 
-export default EnthalpyUnit;
+/**
+ * Gets the display label for an enthalpy unit.
+ * @param unit - The enthalpy unit
+ * @returns The unit label (e.g., 'kJ/kg', 'Btu/lb')
+ * @throws Error if the unit is unknown
+ */
+export function getEnthalpyUnitLabel(unit: EnthalpyUnit): string {
+  const label = enthalpyUnitLabels[unit];
+  if (label === undefined) {
+    throw new Error(`${unit} of type EnthalpyUnit has no label`);
+  }
+  return label;
+}
